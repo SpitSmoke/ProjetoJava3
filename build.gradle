@@ -1,0 +1,32 @@
+plugins {
+	id 'java'
+  id 'application'
+}
+
+mainClassName = 'dev.lobophf.sample.SampleApplication'
+group = 'dev.lobophf'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+  implementation group: 'org.postgresql', name: 'postgresql', version: '42.5.1'
+  testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.1'
+  testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.9.1'
+}
+
+tasks.named('test') {
+  useJUnitPlatform()
+  testLogging.showStandardStreams = true
+
+  testLogging {
+    events "passed", "skipped", "failed"
+  }
+}
+
+run{
+  args += 'first_arg'
+}
